@@ -1,3 +1,6 @@
+using CretaceousApi.Models;
+using Microsoft.EntityFrameworkCore;
+
 // uses implicit using directives and top level statements
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 // there are no views in api, so we only add controllers as a service
 builder.Services.AddControllers();
 // The builder.Services.AddEndpointsApiExplorer(); code enables Swagger documentation to do its job; it exposes our API's endpoints for documentation and other things.
+
+builder.Services.AddDbContext<CretaceousApiContext>(
+                  dbContextOptions => dbContextOptions
+                    .UseMySql(
+                      builder.Configuration["ConnectionStrings:DefaultConnection"], 
+                      ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
+                    )
+                  )
+                );
+
 builder.Services.AddEndpointsApiExplorer();
 // Swagger is a service that automatically documents the available endpoints in our application.
 builder.Services.AddSwaggerGen();
