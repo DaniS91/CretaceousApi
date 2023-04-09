@@ -10,8 +10,6 @@ builder.Services.AddEndpointsApiExplorer();
 // Swagger is a service that automatically documents the available endpoints in our application.
 builder.Services.AddSwaggerGen();
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,7 +23,6 @@ else
 {
 app.UseHttpsRedirection();
 }
-
 
 app.UseAuthorization();
 
