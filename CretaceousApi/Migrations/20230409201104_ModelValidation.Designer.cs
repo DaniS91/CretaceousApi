@@ -2,6 +2,7 @@
 using CretaceousApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CretaceousApi.Migrations
 {
     [DbContext(typeof(CretaceousApiContext))]
-    partial class CretaceousApiContextModelSnapshot : ModelSnapshot
+    [Migration("20230409201104_ModelValidation")]
+    partial class ModelValidation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,12 +30,9 @@ namespace CretaceousApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Species")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("AnimalId");
